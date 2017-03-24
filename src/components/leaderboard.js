@@ -23,10 +23,10 @@ let Leaderboard = React.createClass({
                         <tr>
                             <th>#</th>
                             <th>Camper Name</th>
-                            <th>
+                            <th className="points">
                                 <button onClick={this.onClick} value="recent">Points in past 30 days</button>
                             </th>
-                            <th>
+                            <th className="points">
                                 <button onClick={this.onClick} value="alltime">All time points</button>
                             </th>
                         </tr>

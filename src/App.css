@@ -5,6 +5,9 @@
   text-align: center;
   width: 100%; }
 
+table {
+  width: 100%; }
+
 table tr:nth-child(even) {
   background-color: #F2F2F2; }
 
