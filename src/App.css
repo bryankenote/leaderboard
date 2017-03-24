@@ -5,15 +5,35 @@
   text-align: center;
   width: 100%; }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
+table tr:nth-child(even) {
+  background-color: #F2F2F2; }
+
+table th, table td {
+  padding: 15px; }
+
+table th.points, table td.points {
+  text-align: center; }
+
+table th span, table td span {
+  padding-left: 10px; }
+
+.profile-pic {
+  border: 2px solid #78B999;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px; }
+
+button {
+  background-color: transparent;
+  border: none;
+  color: #78B999;
+  text-shadow: none; }
+
+button:focus {
+  outline: none; }
 
 .App-header {
   background-color: #78B999;
   color: white;
   height: 75px;
   padding: 20px; }
-
-.App-intro {
-  font-size: large; }
