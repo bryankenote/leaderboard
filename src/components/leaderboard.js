@@ -1,32 +1,34 @@
 import React from 'react';
-//import React, { Component } from 'react';
 import User from './user';
 
-class Leaderboard extends React.Component {
-    componentWillMount() {
-        //this.setState({api_param: 'alltime'});
-        //this.setState({api_param: 'recent'});
-    }
+let Leaderboard = React.createClass({
+    onClick: function(e) {
+        this.props.handleChange(e.target.value);
+    },
 
-    render() {
+    render: function() {
         let userRows;
         if(this.props.users) {
             userRows = this.props.users.map( (user, index) => {
                 return (
-                    <User index={index} img={user.img} username={user.username} recent={user.recent} alltime={user.alltime} />
+                    <User key={index} pos={index+1} img={user.img} username={user.username} recent={user.recent} alltime={user.alltime} />
                 );
             });
         }
 
         return (
-            <div className="Leaderboard">
+            <div id="Leaderboard" className="Leaderboard">
                 <table>
                     <tbody>
                         <tr>
                             <th>#</th>
                             <th>Camper Name</th>
-                            <th>Points in past 30 days</th>
-                            <th>All time points</th>
+                            <th>
+                                <button onClick={this.onClick} value="recent">Points in past 30 days</button>
+                            </th>
+                            <th>
+                                <button onClick={this.onClick} value="alltime">All time points</button>
+                            </th>
                         </tr>
                         {userRows}
                     </tbody>
@@ -34,6 +36,6 @@ class Leaderboard extends React.Component {
             </div>)
     }
 
-};
+});
 
 export default Leaderboard;

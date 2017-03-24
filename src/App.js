@@ -1,31 +1,42 @@
 import React from 'react';
-//import React, { Component } from 'react';
 import Leaderboard from './components/leaderboard';
 import './App.css';
 import request from 'request';
 
-class App extends React.Component {
-    componentWillMount() {
-        this.setState({api: 'https://fcctop100.herokuapp.com/api/fccusers/top/'});
-        this.setState({api_param: 'alltime'});
-    }
+let App = React.createClass({
+    getInitialState: function() {
+        return ({
+            api: 'https://fcctop100.herokuapp.com/api/fccusers/top/',
+            api_param: 'recent'
+        });
+    },
 
-    componentDidMount() {
+    //componentDidMount: function() {
+    componentWillMount: function() {
+        this.getUsers();
+    },
+
+    getUsers: function() {
         let self = this;
         request({
-                url: self.state.api + self.state.api_param,
-                method: 'GET',
-            }, function(err, res, body){
-                if(err) {
-                    console.log(err);
-                } else {
-                    console.log(body);
-                    self.setState({users: JSON.parse(body)});
-                }
+            url: self.state.api + self.state.api_param,
+            method: 'GET',
+        }, function(err, res, body){
+            if(err) {
+                console.log(err);
+            } else {
+                self.setState({users: JSON.parse(body)});
+            }
         });
-    }
+    },
 
-    render() {
+    changeUserOrder: function(param) {
+        this.setState({api_param: param}, function() {
+            this.getUsers();
+        });
+    },
+
+    render: function() {
         return (
             <div className="App">
                 <div className="App-header">
@@ -35,11 +46,11 @@ class App extends React.Component {
                     <div className="table-title">
                         <h2>Leaderboard</h2>
                     </div>
-                    <Leaderboard api={this.state.api} users={this.state.users} />
+                    <Leaderboard api={this.state.api + this.state.api_param} users={this.state.users} handleChange={this.changeUserOrder} />
                 </div>
             </div>
         );
     }
-}
+});
 
 export default App;

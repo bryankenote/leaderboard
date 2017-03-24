@@ -1,19 +1,23 @@
 import React from 'react';
-//import React, { Component } from 'react';
 
-class User extends React.Component {
+let User = React.createClass({
 
-    render() {
+    render: function() {
         let userPage = 'https://www.freecodecamp.com/' + this.props.username;
         return (
             <tr className="user">
-                <td>1</td>
-                <td><img className="profile-pic" src={this.props.img} alt="profile-pic" /><a href={userPage}>{this.props.username}</a></td>
-                <td>{this.props.recent}</td>
-                <td>{this.props.alltime}</td>
+                <td>{this.props.pos}</td>
+                <td>
+                    <a href={userPage}>
+                        <img className="profile-pic" src={this.props.img} alt="profile-pic" />
+                        <span>{this.props.username}</span>
+                    </a>
+                </td>
+                <td className="points">{this.props.recent}</td>
+                <td className="points">{this.props.alltime}</td>
             </tr>)
     }
 
-};
+});
 
 export default User;
